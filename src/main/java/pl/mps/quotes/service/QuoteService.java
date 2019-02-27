@@ -6,6 +6,7 @@ import pl.mps.quotes.mapper.QuoteMapper;
 import pl.mps.quotes.model.Quote;
 import pl.mps.quotes.model.QuoteDto;
 import pl.mps.quotes.repository.QuoteRepository;
+import pl.mps.quotes.utils.RandomUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,8 @@ public class QuoteService {
     public Optional<Quote> findRandom() {
 
         long count = quoteRepository.count();
-        return count > 0 ? quoteRepository.findById(RANDOM.nextLong() % count) : Optional.empty();
+        long id = RandomUtils.nextLong(0, count) + 1;
+        return count > 0 ? quoteRepository.findById(id) : Optional.empty();
     }
 
     public Quote add(QuoteDto dto) {
@@ -43,6 +45,10 @@ public class QuoteService {
     }
 
     public List<Quote> findByAuthor(String author) {
-        return quoteRepository.findAllByAuthor(author);
+        return quoteRepository.findAllByAuthorContaining(author);
+    }
+
+    public Optional<Quote> findById(Long id) {
+        return quoteRepository.findById(id);
     }
 }

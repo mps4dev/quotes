@@ -1,10 +1,15 @@
 package pl.mps.quotes.model;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +19,7 @@ import java.time.LocalDateTime;
 public class Quote {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "quotes_seq_gen")
     private Long id;
 
     private String author;

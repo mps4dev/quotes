@@ -1,5 +1,6 @@
 package pl.mps.quotes.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.mps.quotes.model.Quote;
@@ -12,6 +13,6 @@ public interface QuoteRepository extends CrudRepository<Quote, Long> {
 
     Optional<Quote> findById(Long id);
 
-    List<Quote> findAllByAuthor(String author);
+    List<Quote> findAllByAuthorContaining(String str);
 
 }

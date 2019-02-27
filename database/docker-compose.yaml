@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  postgres:
+    restart: 'always'
+    ports:
+    - '5432:5432'
+    environment:
+    - POSTGRES_USER=quote
+    - POSTGRES_PASSWORD=quote@123
+    - POSTGRES_DB=quotes
+    build: .
