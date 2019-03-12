@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("quote")
+@CrossOrigin("*")
 public class QuoteController {
 
     private final QuoteService quoteService;

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes
+  labels:
+    app: quotes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: quotes
+  template:
+    metadata:
+      labels:
+        app: quotes
+    spec:
+      containers:
+      - name: quotes
+        image: mps4dev/quotesapp:2.0
+        ports:
+        - containerPort: 8070
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quoteswebapp
+  labels:
+    app: quoteswebapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quoteswebapp
+  template:
+    metadata:
+      labels:
+        app: quoteswebapp
+    spec:
+      containers:
+      - name: quoteswebapp
+        image: mps4dev/quoteswebapp:14.0
+        ports:
+        - containerPort: 80

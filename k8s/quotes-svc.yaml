@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quotes
+  name: quotes-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 8070
+    protocol: TCP
+    targetPort: 8070
+    nodePort: 30070
+  selector:
+    app: quotes
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quoteswebapp
+  name: quoteswebapp-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30090
+  selector:
+    app: quoteswebapp
